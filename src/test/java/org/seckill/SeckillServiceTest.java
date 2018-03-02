@@ -19,27 +19,39 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 //真心不知道为什么5.0.4版本的spring依赖找不到这个包。哭晕
 @RunWith(SpringJUnit4ClassRunner.class)
-//告诉junit Spring配置文件
-@ContextConfiguration({"classpath:spring/spring-dao.xml","classpath:spring/spring-service.xml"})
-public class SeckillServiceTest{
-	private final Logger Logger = LoggerFactory.getLogger(this.getClass());
+// 告诉junit Spring配置文件
+@ContextConfiguration({ "classpath:spring/spring-dao.xml", "classpath:spring/spring-service.xml" })
+public class SeckillServiceTest {
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	@Autowired
 	private SeckillService seckillService;
+
 	@Test
-	public void getSeckillList() throws Exception{
-		
+	public void getSeckillList() throws Exception {
+		List<Seckill> list = seckillService.getSeckillList();
+		logger.info("list={}", list);
 	}
 
-	public void getById(long seckillId) throws Exception{
-		
+	@Test
+	public void getById() throws Exception {
+		int seckillId = 1;
+		Seckill seckill = seckillService.getById(seckillId);
+		logger.info("seckill={}", seckill);
 	}
 
-	public void exportSeckillUrl(long seckillId) throws Exception{
-		
+	@Test
+	public void exportSeckillUrl() throws Exception {
+		int seckillId = 1;
+		Exporter exporter = seckillService.exportSeckillUrl(seckillId);
+		logger.info("exporter={}", exporter);
 	}
 
-	public void executeSeckill(long seckillId, long userPhone, String md5)
-			throws Exception{
-		
+	@Test
+	public void executeSeckill() throws Exception {
+		long id = 1L;
+		long phone = 18511068608L;
+		String md5="65b0474df07d9f76b8cb9e8806ed7625";
+		SeckillExecution seckillExecution = seckillService.executeSeckill(id, phone, md5);
+		logger.info("seckillExecution={}", seckillExecution);
 	}
 }

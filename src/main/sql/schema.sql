@@ -15,10 +15,10 @@ CREATE TABLE `success_killed` (
   `seckill_id` bigint(20) NOT NULL COMMENT '秒杀商品ID',
   `user_phone` bigint(20) NOT NULL COMMENT '用户手机号',
   `state` tinyint(4) NOT NULL DEFAULT '-1' COMMENT '状态：-1:无效，0:成功，1:付款',
-  `create_time` timestamp NOT NULL DEFAULT '1970-01-01 08:00:01' COMMENT '创建时间',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   PRIMARY KEY (`seckill_id`,`user_phone`),
   KEY `idx_create_time` (`create_time`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='秒杀成功明细表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='秒杀成功明细表'
 
 insert into seckill.seckill(name,number,start_time,end_time)
 values
