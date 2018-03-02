@@ -18,6 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
 
 /**
@@ -64,8 +65,13 @@ public class SeckillServiceImpl implements SeckillService {
 	/* (non-Javadoc)
 	 * @see org.seckill.service.SeckillService#executeSeckill(long, long, java.lang.String)
 	 * 执行秒杀
+	 * 使用注解控制事务方法的优点
+	 * 1、开发团队达成一致的约定，明确标注事务方法的编程风格
+	 * 2、保证事务方法的执行时间尽可能短,不要穿插操作其他的网络操作RPC/HTTP，剥离到事务外
+	 * 3、不是所有方法都需要事务，只有一条修改，只读操作等
 	 */
 	@Override
+	@Transactional
 	public SeckillExecution executeSeckill(long seckillId, long userPhone, String md5)
 			throws SeckillException, RepeatKillException, SeckillCloseException {
 		if (md5==null||md5.equals(getMD5(seckillId))) {
