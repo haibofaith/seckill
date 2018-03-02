@@ -19,15 +19,15 @@ public class SuccessKilledDaoTest {
 		private SuccessKilledDao successKilledDao;
 		@Test
 		public void insertSuccessKilledTest() {
-			long id =1L;
-			long phone = 18511068608L;
+			long id =2L;
+			long phone = 18511068888L;
 			int insertCount = successKilledDao.insertSuccessKilled(id,phone);
 			System.out.println(insertCount);
 		}
 		@Test
 		public void queryByIdWithSeckillTest() {
-			long id =1L;
-			long phone = 18511068608L;
+			long id =2L;
+			long phone = 18511068888L;
 			SuccessKilled successkilled = successKilledDao.queryByIdWithSeckill(id,phone);
 			System.out.println(successkilled);
 		}
