@@ -51,7 +51,14 @@ public class SeckillServiceTest {
 		long id = 1L;
 		long phone = 18511068608L;
 		String md5="65b0474df07d9f76b8cb9e8806ed7625";
-		SeckillExecution seckillExecution = seckillService.executeSeckill(id, phone, md5);
-		logger.info("seckillExecution={}", seckillExecution);
+		try {
+			SeckillExecution seckillExecution = seckillService.executeSeckill(id, phone, md5);
+			logger.info("seckillExecution={}", seckillExecution);
+		} catch (RepeatKillException e) {
+			logger.error(e.getMessage());
+		}catch (SeckillCloseException e) {
+			logger.error(e.getMessage());
+		}
+		
 	}
 }
