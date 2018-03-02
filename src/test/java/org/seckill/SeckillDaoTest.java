@@ -1,6 +1,9 @@
 package org.seckill;
 
 
+import java.util.Date;
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.junit.Test;
@@ -32,6 +35,25 @@ public class SeckillDaoTest {
 		Seckill seckil = seckillDao.queryById(id);
 		System.out.println(seckil.getName());
 		System.out.println(seckil);
+	}
+	
+	/**
+	 * Caused by: org.apache.ibatis.binding.BindingException: Parameter 'offset' not found. 
+	 * */
+	@Test
+	public void queryAllTest() throws Exception{
+		//问题解决：多个参数,修改dao文件接口，新加mybatis注解param
+		List<Seckill> seckills = seckillDao.queryAll(0, 100);
+		for (Seckill seckill:seckills) {
+			System.out.println(seckill);
+		}
+	}
+	
+	@Test
+	public void reduceNumber() throws Exception{
+		Date date = new Date();
+		int successCount = seckillDao.reduceNumber(2, date);
+		System.out.println("成功秒杀了"+successCount+"个");
 	}
 
 }
