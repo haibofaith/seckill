@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 //告诉junit Spring配置文件
 @ContextConfiguration({"classpath:spring/spring-dao.xml"})
 public class SuccessKilledDaoTest {
-	// 注入Dao实现类依赖
+		// 注入Dao实现类依赖
 		@Resource
 		private SuccessKilledDao successKilledDao;
 		@Test

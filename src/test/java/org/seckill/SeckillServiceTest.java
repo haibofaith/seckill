@@ -59,6 +59,29 @@ public class SeckillServiceTest {
 		}catch (SeckillCloseException e) {
 			logger.error(e.getMessage());
 		}
-		
+	}
+	
+	//测试秒杀完整流程
+	@Test
+	public void testSeckillLogic()  throws Exception{
+		int seckillId =2;
+		//秒杀是否开启
+		Exporter exporter = seckillService.exportSeckillUrl(seckillId);
+		if (exporter.isExported()) {
+			logger.info("exporter={}", exporter);
+			String md5 = exporter.getMd5();
+			long phone = 18511068607L;
+			try {
+				//
+				SeckillExecution seckillExecution = seckillService.executeSeckill(seckillId, phone, md5);
+				logger.info("seckillExecution={}", seckillExecution);
+			} catch (RepeatKillException e) {
+				logger.error(e.getMessage());
+			}catch (SeckillCloseException e) {
+				logger.error(e.getMessage());
+			}
+		}else {
+			logger.info("exporter={}", exporter);
+		}
 	}
 }
