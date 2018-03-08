@@ -19,7 +19,7 @@
 		<property name="viewClass"
 			value="org.springframework.web.servlet.view.JstlView"></property>
 		<!-- 前缀 :说明如果直接放在web-inf下，不需要加前缀 -->
-		<property name="prefix" value="WEB-INF/jsp/"></property>
+		<property name="prefix" value="/WEB-INF/jsp/"></property>
 		<!-- 后缀 ： -->
 		<property name="suffix" value=".jsp"></property>
 	</bean>
